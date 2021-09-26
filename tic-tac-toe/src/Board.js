@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Button from './Button'
 import './board.css'
 
 export default function Board() {
@@ -33,7 +34,7 @@ export default function Board() {
                 <table className="bordaSimples dimensaoPadrao centralizado">
                     <tr>
                         <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(0)}></button>
+                            <Button marcarPosicao={marcarPosicao} indicePosicao={0}></Button>
                         </td>
                         <td>
                             <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(1)}></button>
