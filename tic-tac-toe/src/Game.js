@@ -34,7 +34,7 @@ export default function Game() {
                 <div class="row">
                     <div class="col-sm"></div>
                     <div class="col-sm">
-                        <Board marcarPosicao={marcarPosicao}></Board>
+                        <Board marcarPosicao={marcarPosicao} tabuleiro={tabuleiro}></Board>
                     </div>
                     <div class="col-sm"></div>
                 </div>
