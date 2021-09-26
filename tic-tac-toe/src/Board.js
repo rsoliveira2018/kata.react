@@ -3,7 +3,7 @@ import Button from './Button'
 
 export default function Board({ marcarPosicao }) {
     return(
-        <>
+        <div class="container">
             <div class="row">
                 <div class="col-sm bordaSimples">
                     <Button marcarPosicao={marcarPosicao} indicePosicao={0}></Button>
@@ -37,6 +37,6 @@ export default function Board({ marcarPosicao }) {
                     <Button marcarPosicao={marcarPosicao} indicePosicao={8}></Button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
