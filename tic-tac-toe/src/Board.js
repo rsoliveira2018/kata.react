@@ -1,72 +1,42 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from './Button'
-import './board.css'
 
-export default function Board() {
-
-    const [tabuleiro, setTabuleiro] = useState([undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
-    const [jogador, setJogador] = useState(false); // true -> bolinha / false -> xis / bolinha como padrão para iniciar
-
-    const posicaoJaOcupada = (posicaoEscolhida) => {
-        if(tabuleiro[posicaoEscolhida] !== undefined){
-            alert('Sorry, but this field is already taken! Choose another.');
-            return true;
-        }
-        return false;
-    }
-
-    const marcarPosicao = (posicaoEscolhida) => {
-
-        if (posicaoJaOcupada(posicaoEscolhida)) return;
-
-        let tabuleiro_aux = tabuleiro;
-        tabuleiro_aux[posicaoEscolhida] = jogador;
-        setTabuleiro(tabuleiro_aux);
-
-        setJogador(jogadorAnterior => !jogadorAnterior);
-
-        // Alterar a imagem do botão para representar a bolinha ou o xis, conforme o jogador que o escolheu
-    }
-
-    return (
+export default function Board({ marcarPosicao }) {
+    return(
         <>
-            <div>
-                <table className="bordaSimples dimensaoPadrao centralizado">
-                    <tr>
-                        <td>
-                            <Button marcarPosicao={marcarPosicao} indicePosicao={0}></Button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(1)}></button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(2)}></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(3)}></button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(4)}></button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(5)}></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(6)}></button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(7)}></button>
-                        </td>
-                        <td>
-                            <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(8)}></button>
-                        </td>
-                    </tr>
-                </table>
+            <div class="row">
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={0}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={1}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={2}></Button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={3}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={4}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={5}></Button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={6}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={7}></Button>
+                </div>
+                <div class="col-sm bordaSimples">
+                    <Button marcarPosicao={marcarPosicao} indicePosicao={8}></Button>
+                </div>
             </div>
         </>
-    );
+    )
 }
