@@ -1,16 +1,19 @@
 .bordaSimples {
-  border: 2px solid #ccc;
+  border: 3px solid #ddd;
   border-radius: 2%;
   padding: 0px;
+  margin: 2px;
 }
 
-.dimensaoPadrao,
-.dimensaoPadrao td,
-.dimensaoPadrao tr {
+.dimensaoPadrao {
   width: 100px;
   height: 100px;
 }
 
 .centralizado {
   margin: auto;
+}
+
+.bolinha {
+  background: url();
 }
