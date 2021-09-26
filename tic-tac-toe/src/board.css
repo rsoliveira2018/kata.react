@@ -9,7 +9,13 @@
   background-color: #ddd;
 }
 
-.dimensaoPadrao {
-  width: 300px;
-  height: 300px;
+.dimensaoPadrao,
+.dimensaoPadrao td,
+.dimensaoPadrao tr {
+  width: 100px;
+  height: 100px;
+}
+
+.centralizado {
+  margin: auto;
 }
