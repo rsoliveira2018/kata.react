@@ -1,12 +1,9 @@
 import React from 'react'
-import Bolinha from './Bolinha'
-import Xis from './Xis'
 
-export default function Button({ marcarPosicao, indicePosicao }) {
+export default function Button({ marcarPosicao, indicePosicao, children }) {
     return(
         <button className="btn dimensaoPadrao" onClick={() => marcarPosicao(indicePosicao)}>
-            {/* <Bolinha /> */}
-            <Xis />
+            {children}
         </button>
     )
 }
