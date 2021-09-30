@@ -3,7 +3,7 @@ import Button from './Button'
 import Bolinha from './Bolinha'
 import Xis from './Xis'
 
-export default function Board({ marcarPosicao, tabuleiro }) {
+export default function Board({ marcarPosicao, tabuleiro, vencedor }) {
 
     const definirFormaExibida = (indicePosicao) => {
         if(tabuleiro[indicePosicao] === true)
@@ -15,8 +15,19 @@ export default function Board({ marcarPosicao, tabuleiro }) {
         }
     }
 
+    let gameIsOver = (vencedor === undefined) ? {"pointer-events": "auto"} : {"pointer-events": "none"}
+
+    let nomeVencedor = ""
+    if(!(vencedor === undefined)){
+        if(vencedor === true){
+            nomeVencedor = "BOLINHA"
+        } else {
+            nomeVencedor = "XIS"
+        }
+    }
+
     return(
-        <div class="container">
+        <div class="container" style={gameIsOver}>
             <div class="row">
                 <div class="col-sm bordaSimples">
                     <Button marcarPosicao={marcarPosicao} indicePosicao={0}>
@@ -67,6 +78,17 @@ export default function Board({ marcarPosicao, tabuleiro }) {
                         {definirFormaExibida(8)}
                     </Button>
                 </div>
+            </div>
+            <div class="row">
+            <div class="col-sm">
+                
+            </div>
+            <div class="col-sm">
+                O vencedor foi <h4>{nomeVencedor}</h4>
+            </div>
+            <div class="col-sm">
+                
+            </div>
             </div>
         </div>
     )
