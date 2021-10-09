@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, createRef } from 'react'
+import { useScreenshot } from 'use-react-screenshot'
 import Board from './Board'
 import Camera from './Camera'
 import './board.css'
@@ -10,6 +11,31 @@ export default function Game() {
     const [vencedor, setVencedor] = useState(undefined);
     const [bolinhaScore, setBolinhaScore] = useState(0);
     const [xisScore, setXisScore] = useState(0);
+    const ref = createRef(null);
+    const [screenshot, setScreenshot] = useScreenshot();
+    
+    const takeScreenshot = () => {
+        setScreenshot(ref.current);
+        downloadImage();
+    };
+
+    const downloadImage = () => {
+        fetch(screenshot, {
+            method: 'GET',
+            headers: {}
+        }).then(response => {
+            response.arrayBuffer().then(function(buffer) {
+                const url = window.URL.createObjectURL(new Blob([buffer]));
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "image.png");
+                document.body.appendChild(link);
+                link.click();
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+    };
 
     const posicaoJaOcupada = (posicaoEscolhida) => {
         if(tabuleiro[posicaoEscolhida] !== undefined){
@@ -17,23 +43,19 @@ export default function Game() {
             return true;
         }
         return false;
-    }
+    };
 
     const restartGame = () => {
         setTabuleiro([undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
         setVencedor(undefined);
         setJogador(true);
-    }
+    };
 
     const resetGame = () => {
         restartGame();
         setBolinhaScore(0);
         setXisScore(0);
-    }
-
-    const takeScreenshot = () => {
-
-    }
+    };
 
     const isTheGameOver = () => {
 
@@ -52,6 +74,7 @@ export default function Game() {
             (tabuleiro[2] && tabuleiro[4] && tabuleiro[6])){
             setVencedor(true); // Bolinha venceu
             setBolinhaScore(prevBolinhaScore => prevBolinhaScore + 1);
+            restartGame();
             return true;
         }
 
@@ -66,12 +89,20 @@ export default function Game() {
             (tabuleiro[2] === false && tabuleiro[4] === false && tabuleiro[6] === false)){
             setVencedor(false); // Xis venceu
             setXisScore(prevXisScore => prevXisScore + 1);
+            restartGame();
             return true;
         }
 
+        if(
+            tabuleiro[0] !== undefined && tabuleiro[1] !== undefined && tabuleiro[2] !== undefined
+            && tabuleiro[3] !== undefined && tabuleiro[4] !== undefined && tabuleiro[5] !== undefined
+            && tabuleiro[6] !== undefined && tabuleiro[7] !== undefined && tabuleiro[8] !== undefined){
+            restartGame();
+            return true;
+        }
         return false;
 
-    }
+    };
 
     const marcarPosicao = (posicaoEscolhida) => {
         if (posicaoJaOcupada(posicaoEscolhida)) return;
@@ -90,7 +121,7 @@ export default function Game() {
             <div class="container">
                 <div class="row">
                     <div class="col-sm"></div>
-                    <div class="col-sm">
+                    <div class="col-sm" ref={ref}>
                         <Board marcarPosicao={marcarPosicao} tabuleiro={tabuleiro} vencedor={vencedor}></Board>
                         <div class="row">
                             <div class="col-sm">
@@ -105,8 +136,7 @@ export default function Game() {
                                 <div class="row">
                                     <div class="col-sm">
                                         <button className="btn btn-secondary meiaDimensaoPadrao botaoCentral centralizado" onClick={takeScreenshot}>
-                                            <Camera>
-                                            </Camera>
+                                            <Camera></Camera>
                                         </button>
                                     </div>
                                 </div>
