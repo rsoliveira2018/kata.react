@@ -17,15 +17,6 @@ export default function Board({ marcarPosicao, tabuleiro, vencedor }) {
 
     let gameIsOver = (vencedor === undefined) ? {"pointer-events": "auto"} : {"pointer-events": "none"}
 
-    let nomeVencedor = ""
-    if(!(vencedor === undefined)){
-        if(vencedor === true){
-            nomeVencedor = "BOLINHA"
-        } else {
-            nomeVencedor = "XIS"
-        }
-    }
-
     return(
         <div class="container" style={gameIsOver}>
             <div class="row">
@@ -78,17 +69,6 @@ export default function Board({ marcarPosicao, tabuleiro, vencedor }) {
                         {definirFormaExibida(8)}
                     </Button>
                 </div>
-            </div>
-            <div class="row">
-            <div class="col-sm">
-                
-            </div>
-            <div class="col-sm">
-                O vencedor foi <h4>{nomeVencedor}</h4>
-            </div>
-            <div class="col-sm">
-                
-            </div>
             </div>
         </div>
     )

@@ -12,4 +12,38 @@
 
 .centralizado {
   margin: auto;
+  text-align: center;
+}
+
+.fontePlacar {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.botaoEsquerdo {
+  margin-left: 18px;
+  margin-top: 10px;
+}
+
+.botaoDireito {
+  margin-right: 18px;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  color: white;
+}
+
+.botaoDesativado {
+  pointer-events: none;
+}
+
+.meiaDimensaoPadrao {
+  width: 90px;
+  height: 45px;
+}
+
+.botaoCentral {
+  margin-top: 10px;
 }

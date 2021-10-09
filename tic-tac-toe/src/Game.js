@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Board from './Board'
+import Camera from './Camera'
 import './board.css'
 
 export default function Game() {
@@ -7,6 +8,8 @@ export default function Game() {
     const [tabuleiro, setTabuleiro] = useState([undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
     const [jogador, setJogador] = useState(true); // true -> bolinha / false -> xis / bolinha como padrão para iniciar
     const [vencedor, setVencedor] = useState(undefined);
+    const [bolinhaScore, setBolinhaScore] = useState(0);
+    const [xisScore, setXisScore] = useState(0);
 
     const posicaoJaOcupada = (posicaoEscolhida) => {
         if(tabuleiro[posicaoEscolhida] !== undefined){
@@ -14,6 +17,22 @@ export default function Game() {
             return true;
         }
         return false;
+    }
+
+    const restartGame = () => {
+        setTabuleiro([undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined]);
+        setVencedor(undefined);
+        setJogador(true);
+    }
+
+    const resetGame = () => {
+        restartGame();
+        setBolinhaScore(0);
+        setXisScore(0);
+    }
+
+    const takeScreenshot = () => {
+
     }
 
     const isTheGameOver = () => {
@@ -32,6 +51,7 @@ export default function Game() {
             (tabuleiro[0] && tabuleiro[4] && tabuleiro[8]) ||
             (tabuleiro[2] && tabuleiro[4] && tabuleiro[6])){
             setVencedor(true); // Bolinha venceu
+            setBolinhaScore(prevBolinhaScore => prevBolinhaScore + 1);
             return true;
         }
 
@@ -45,6 +65,7 @@ export default function Game() {
             (tabuleiro[0] === false && tabuleiro[4] === false && tabuleiro[8] === false) ||
             (tabuleiro[2] === false && tabuleiro[4] === false && tabuleiro[6] === false)){
             setVencedor(false); // Xis venceu
+            setXisScore(prevXisScore => prevXisScore + 1);
             return true;
         }
 
@@ -71,6 +92,29 @@ export default function Game() {
                     <div class="col-sm"></div>
                     <div class="col-sm">
                         <Board marcarPosicao={marcarPosicao} tabuleiro={tabuleiro} vencedor={vencedor}></Board>
+                        <div class="row">
+                            <div class="col-sm">
+                                <button className="btn btn-danger dimensaoPadrao botaoEsquerdo fontePlacar botaoDesativado">{bolinhaScore}</button>
+                            </div>
+                            <div class="col-sm centralizado">
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <button className="btn btn-warning meiaDimensaoPadrao botaoCentral" onClick={resetGame}>Reset ?</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm">
+                                        <button className="btn btn-secondary meiaDimensaoPadrao botaoCentral centralizado" onClick={takeScreenshot}>
+                                            <Camera>
+                                            </Camera>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm">
+                                <button className="btn btn-primary dimensaoPadrao botaoDireito fontePlacar botaoDesativado">{xisScore}</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-sm"></div>
                 </div>
