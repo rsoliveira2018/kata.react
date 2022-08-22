@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function randomizedNumber() : number {
-  return Math.round((Math.random() * 10));
+  return Math.round((Math.random() * 99));
 }
 
 function App() {
