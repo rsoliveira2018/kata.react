@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Context from './Context/Context';
 import Counter from './Counter';
 
