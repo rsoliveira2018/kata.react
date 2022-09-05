@@ -1,1 +1,3 @@
-# kata.react - a repository for a few tests on react
+# kata.react
+
+Repository for a few tests, implementations and practices on React
