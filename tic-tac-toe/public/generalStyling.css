@@ -6,3 +6,15 @@
 body {
   padding-top: 15px;
 }
+
+.dark {
+  background-color: #777;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.light {
+  background-color: #ccc;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}

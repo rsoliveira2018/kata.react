@@ -1,8 +1,9 @@
-import React, { useState, createRef } from 'react';
+import React, { useState, createRef, useContext } from 'react';
 import { useScreenshot } from 'use-react-screenshot';
 import Board from './Board';
 import Camera from './Camera';
 import './board.css';
+import ThemeContext from './contexts/ThemeContext';
 
 export default function Game() {
   const [tabuleiro, setTabuleiro] = useState([
@@ -79,9 +80,9 @@ export default function Game() {
   };
 
   const isTheGameOver = () => {
-    /* [   0   ] [   1   ] [   2   ]
-           [   3   ] [   4   ] [   5   ]
-           [   6   ] [   7   ] [   8   ] */
+    /*  [   0   ] [   1   ] [   2   ]
+        [   3   ] [   4   ] [   5   ]
+        [   6   ] [   7   ] [   8   ] */
 
     if (
       (tabuleiro[0] && tabuleiro[1] && tabuleiro[2]) ||
@@ -160,9 +161,12 @@ export default function Game() {
     isTheGameOver();
   };
 
+  const { theme } = useContext(ThemeContext);
+  const containerClasses = "container " + theme;
+
   return (
     <>
-      <div class="container">
+      <div class={containerClasses}>
         <div class="row">
           <div class="col-sm"></div>
           <div class="col-sm" ref={ref}>
